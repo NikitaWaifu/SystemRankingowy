@@ -66,6 +66,11 @@ namespace rankingi
                 S1 = 0;
                 S2 = 1;
             }
+            else if (wynik == 3)
+            {
+                S1 = 0.5;
+                S2 = 0.5;
+            }
             gracz1.rankingPubliczny = gracz1.rankingPubliczny + k * (S1 - E1);
             gracz2.rankingPubliczny = gracz2.rankingPubliczny + k * (S2 - E2);
         }
@@ -287,10 +292,11 @@ namespace rankingi
                                 Console.WriteLine("Kto wygral mecz?");
                                 Console.WriteLine("1. {0}", gracz1.nickPubliczny);
                                 Console.WriteLine("2. {0}", gracz2.nickPubliczny);
+                                Console.WriteLine("3. Remis");
                                 char wynik = Console.ReadKey().KeyChar;
-                                if (wynik != '1' && wynik != '2')
+                                if (wynik != '1' && wynik != '2' && wynik != '3')
                                 {
-                                    Console.WriteLine("BLAD! Wybierz 1 lub 2.");
+                                    Console.WriteLine("BLAD! Wybierz 1,2 lub 3");
                                     Console.ReadKey();
                                     break;
                                 }
@@ -333,6 +339,9 @@ namespace rankingi
                         Console.WriteLine("Pomyślnie zapisano zmiany.");
                         Console.ReadKey();
                     }
+                        break;
+                    case '0':
+                        loop = false;
                         break;
                 }
             }
