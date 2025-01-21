@@ -79,7 +79,7 @@ def OdczytajPlik():
             for linia in plik:
                 linia = linia.strip()
                 dane = linia.split(";")
-                gracze.append(Gracz(dane[0], dane[1], dane[2], int(dane[3]), dane[4] == "True"))
+                gracze.append(Gracz(dane[0], dane[1], dane[2], int(dane[3])))
 
     if os.path.exists("mecze.txt"):
         with open("mecze.txt", "r") as plik:
@@ -127,7 +127,25 @@ while True:
     elif wybor == "2":
         nick = input("Podaj nick: ")
         gracz = next((g for g in listagraczy if g.nick == nick), None)
+        if gracz != None:
+            print("Możliwe działania:")
+            print("1. Zmodyfikuj ranking gracza")
+            print("9. Usuń gracza")
+            print("0. Powrót do menu")
+            wybor = input("Wybierz opcję: ")
+            if wybor == "1":
+                nowy_mmr = int(input("Podaj nowy MMR gracza: "))
+                gracz.mmr = nowy_mmr
+                print("Zmiana MMR zapisana.")
+                ZapiszPlik(listagraczy, zakonczone_mecze)
+            elif wybor == "9":
+                listagraczy.remove(gracz)
+                print("Gracz usunięty.")
+                ZapiszPlik(listagraczy, zakonczone_mecze)
+            elif wybor == "0":
+                continue
         print(gracz if gracz else "Gracza o takim nicku nie znaleziono.")
+        
 
     elif wybor == "3":
         if not listagraczy:
