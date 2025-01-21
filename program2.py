@@ -2,18 +2,17 @@ import os
 import uuid
 
 class Gracz:
-    def __init__(self, nick, imie, nazwisko, mmr, czyZawieszony=False):
+    def __init__(self, nick, imie, nazwisko, mmr):
         self.nick = nick
         self.imie = imie
         self.nazwisko = nazwisko
         self.mmr = mmr
-        self.czyZawieszony = czyZawieszony
 
     def __str__(self):
         return f"Gracz {self.imie} {self.nazwisko} o nicku {self.nick} posiada {self.mmr} MMR"
 
     def to_file(self):
-        return f"{self.nick};{self.imie};{self.nazwisko};{self.mmr};{self.czyZawieszony}\n"
+        return f"{self.nick};{self.imie};{self.nazwisko};{self.mmr}\n"
 
 class Mecz:
     def __init__(self, gracz1, gracz2):
